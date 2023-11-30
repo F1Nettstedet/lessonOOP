@@ -2,6 +2,12 @@
 
 const body = document.querySelector('body')
 
+const movement = function(event) {
+    if(event.key === 'ArrowLeft'){
+        console.log(this.square.style.left = `10px`)
+    } 
+
+}
 
 const DomElement = function (selector, height, width, bg, fontSize) {
     this.selector = selector
@@ -40,19 +46,71 @@ const DomElement = function (selector, height, width, bg, fontSize) {
     
             body.append(setById)
         } 
+
+
     }
-      
+       
+}
+
+DomElement.prototype.createSquare = function() {
+    let count = 0
+    let top = 248
+    const square = document.createElement('div')
+    
+    square.style.cssText = `
+    width: 100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    `
+    body.append(square)
+
+
+
+    document.addEventListener('keydown',(event) => {
+        
+        
+        if(event.key === 'ArrowLeft'){
+            count = count + 10
+            console.log(square.style.left = (count) + 'px') 
+        }
+
+       if (event.key === 'ArrowRight'){
+            count = count - 10
+            console.log(square.style.left = (count) + 'px')
+        }
+
+        if(event.key === 'ArrowUp'){
+            top = top + 10
+            console.log(square.style.top = (top) + 'px')
+
+        }
+        else if(event.key === 'ArrowDown'){
+            top = top - 10
+            square.style.top = (top) + 'px'
+        }
+           
+    })
 
 }
 
 
-const create = new DomElement('#Brack', 100, 200, 'red', 30)
 
-const create1 = new DomElement('.ДжагаДжага', 100, 200, 'green', 50)
+const create = new DomElement('#ID', 100, 200, 'red', 30)
 
-const create3 = new DomElement('.ДжагаДжага', 100, 200, 'green', 50)
+
+const create3 = new DomElement('.Class', 100, 200, 'green', 50)
+
+const square = new DomElement()
+
+document.addEventListener('DOMContentLoaded',function(){
+    square.createSquare()
+})
+
+
 
 create3.setElement()
 create.setElement()
+
 
 
